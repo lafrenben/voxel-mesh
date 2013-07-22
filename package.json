@@ -17,5 +17,8 @@
   },
   "engine": {
     "node": ">=0.6.0"
+  },
+  "dependencies": {
+    "ndthree": "~0.2.0"
   }
 }
