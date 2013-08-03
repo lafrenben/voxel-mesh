@@ -15,8 +15,8 @@ function Mesh(data, mesher, scaleFactor, three) {
   var geometry = this.geometry = new this.THREE.BufferGeometry()
   var material = this.material = {}
 
-  // maybe we can simply transpose here to fix orientation?
-  //data.transpose(1, 0, 2)
+  // switch x and z as voxels are generated j,k,i but ndarrays are i,j,k
+  data = data.transpose(2, 1, 0)
 
   var err = ndthree(data, geometry, material)
 
