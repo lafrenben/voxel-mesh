@@ -46,6 +46,7 @@ Mesh.prototype.createSurfaceMesh = function(tiles) {
     // PROBLEM: Why is shader material so slow?
     material: new this.THREE.ShaderMaterial(this.material),
     map: tiles,
+    offset: [0, 12, 0]
   })
 
   surfaceMesh.scale = this.scale
