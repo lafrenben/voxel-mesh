@@ -1,16 +1,19 @@
 var THREE = require('three')
 var ndthree = require('ndthree')
 
-module.exports = function(data, mesher, scaleFactor, three) {
-  return new Mesh(data, mesher, scaleFactor, three)
+module.exports = function(data, mesher, scaleFactor, three, mesherExtraData) {
+  return new Mesh(data, mesher, scaleFactor, three, mesherExtraData)
 }
 
 module.exports.Mesh = Mesh
 
-function Mesh(data, mesher, scaleFactor, three) {
+function Mesh(data, mesher, scaleFactor, three, mesherExtraData) {
   this.THREE = three || THREE
   this.data = data
   this.scale = scaleFactor || new this.THREE.Vector3(10, 10, 10)
+  
+  var result = mesher( data.voxels, data.dims, mesherExtraData )
+  this.meshed = result
 
   var geometry = this.geometry = new this.THREE.BufferGeometry()
   var material = this.material = {}
