@@ -1,4 +1,5 @@
 var THREE = require('three')
+var isndarray = require('isndarray')
 
 module.exports = function(data, mesher, scaleFactor, three, mesherExtraData) {
   return new Mesh(data, mesher, scaleFactor, three, mesherExtraData)
@@ -11,8 +12,17 @@ function Mesh(data, mesher, scaleFactor, three, mesherExtraData) {
   this.data = data
   var geometry = this.geometry = new this.THREE.Geometry()
   this.scale = scaleFactor || new this.THREE.Vector3(10, 10, 10)
-  
-  var result = mesher( data.voxels, data.dims, mesherExtraData )
+
+  var result, voxels, dims
+  if (isndarray(data)) {
+    voxels = data.data
+    dims = data.shape
+  } else {
+    voxels = data.voxels
+    dims = data.dims
+  }
+
+  result = mesher( voxels, dims, mesherExtraData )
   this.meshed = result
 
   geometry.vertices.length = 0
