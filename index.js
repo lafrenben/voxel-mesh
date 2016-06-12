@@ -61,8 +61,8 @@ Mesh.prototype.createWireMesh = function(hexColor) {
     color : hexColor || 0xffffff,
     wireframe : true
   })
-  wireMesh = new this.THREE.Mesh(this.geometry, wireMaterial)
-  wireMesh.scale = this.scale
+  var wireMesh = new this.THREE.Mesh(this.geometry, wireMaterial)
+  wireMesh.scale.copy(this.scale)
   wireMesh.doubleSided = true
   this.wireMesh = wireMesh
   return wireMesh
@@ -71,7 +71,7 @@ Mesh.prototype.createWireMesh = function(hexColor) {
 Mesh.prototype.createSurfaceMesh = function(material) {
   material = material || new this.THREE.MeshNormalMaterial()
   var surfaceMesh  = new this.THREE.Mesh( this.geometry, material )
-  surfaceMesh.scale = this.scale
+  surfaceMesh.scale.copy(this.scale)
   surfaceMesh.doubleSided = false
   this.surfaceMesh = surfaceMesh
   return surfaceMesh
