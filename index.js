@@ -1,3 +1,5 @@
+var isndarray = require('isndarray')
+
 module.exports = function(data, mesher, scaleFactor, three, mesherExtraData) {
   return new Mesh(data, mesher, scaleFactor, three, mesherExtraData)
 }
